@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary-900: #151d48;
+  --color-primary-800: #4e65ff;
+  --color-primary-200: #7b91b2;
+  --color-primary-dark: #05004e;
+
+  --color-support-green: #2dce89;
+  --color-support-green-shade: #d3ffe7;
+  --color-support-yellow: #ffc922;
+  --color-support-yellow-shade: #fff9e5;
+  --color-support-violet: #8c52ff;
+  --color-support-violet-shade: #ede8ff;
+  --color-support-red: #f64e60;
+  --color-support-red-shade: #fad6da;
+
+  --color-grey-100: #e7e9ed;
+  --color-grey-300: #f9fafb;
+  --color-grey-700: #7b91b2;
+  --color-grey-800: #464e5f;
+  --color-grey-900: #151d48;
+
+  --color-bg-main: #fafbfc;
+
+  /* Font families */
+  --font-family-sans: Poppins, system-ui, -apple-system, sans-serif;
+  --font-family-secondary: Epilogue, system-ui, -apple-system, sans-serif;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Shadows */
+  --shadow-card: 0px 4px 20px rgba(238, 238, 238, 0.502);
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/epilogue/v17/O4ZMFGj5hxF0EhjimngomvnCCtqb30OXMDLiDJXVigHPVA.woff2') format('woff2');
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg-main);
+  }
+}
