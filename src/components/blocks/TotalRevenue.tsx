@@ -1,59 +1,62 @@
-export default function TotalRevenue() {
+export function TotalRevenue() {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const onlineData = [12, 15, 18, 10, 20, 16, 22];
-  const offlineData = [8, 10, 12, 14, 11, 9, 15];
+  const yAxis = ['25k', '20k', '15k', '10k', '5k', '0'];
 
-  const maxValue = 25;
+  const data = [
+    { online: 45, offline: 60 },
+    { online: 75, offline: 50 },
+    { online: 40, offline: 55 },
+    { online: 55, offline: 70 },
+    { online: 85, offline: 60 },
+    { online: 35, offline: 45 },
+    { online: 50, offline: 65 },
+  ];
 
   return (
-    <div className="rounded-[20px] bg-white p-8 border border-grey-100" style={{ boxShadow: 'var(--shadow-card)' }}>
-      <h2 className="mb-6 text-xl font-semibold text-primary-dark">Total Revenue</h2>
+    <div className="bg-white rounded-[20px] p-6 shadow-card">
+      <h2 className="text-xl font-semibold text-primary-dark mb-6">Total Revenue</h2>
 
-      <div className="relative h-[250px]">
-        {/* Y-axis labels */}
-        <div className="absolute left-0 top-0 bottom-12 flex flex-col justify-between text-xs text-grey-700 opacity-70">
-          <span>25k</span>
-          <span>20k</span>
-          <span>15k</span>
-          <span>10k</span>
-          <span>5k</span>
-          <span>0</span>
+      <div className="relative h-[220px]">
+        {/* Y-Axis Labels */}
+        <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-700">
+          {yAxis.map((val) => (
+            <span key={val}>{val}</span>
+          ))}
         </div>
 
-        {/* Bars */}
-        <div className="ml-8 h-full flex items-end justify-between gap-2 pb-8">
-          {days.map((day, index) => {
-            const onlineHeight = (onlineData[index] / maxValue) * 100;
-            const offlineHeight = (offlineData[index] / maxValue) * 100;
+        {/* Chart Area */}
+        <div className="ml-10 h-full flex items-end justify-between gap-2">
+          {data.map((item, i) => (
+            <div key={i} className="flex gap-1 items-end h-full">
+              <div
+                className="w-3 bg-chart-blue rounded-t-sm"
+                style={{ height: `${item.online}%` }}
+              ></div>
+              <div
+                className="w-3 bg-chart-teal rounded-t-sm"
+                style={{ height: `${item.offline}%` }}
+              ></div>
+            </div>
+          ))}
+        </div>
 
-            return (
-              <div key={day} className="flex flex-1 flex-col items-center gap-1">
-                <div className="flex w-full gap-1 items-end" style={{ height: '200px' }}>
-                  <div
-                    className="flex-1 rounded-t-md bg-primary-800"
-                    style={{ height: `${onlineHeight}%` }}
-                  ></div>
-                  <div
-                    className="flex-1 rounded-t-md bg-support-green"
-                    style={{ height: `${offlineHeight}%` }}
-                  ></div>
-                </div>
-                <span className="mt-2 text-[10px] text-grey-700">{day}</span>
-              </div>
-            );
-          })}
+        {/* X-Axis Labels */}
+        <div className="absolute bottom-[-24px] left-10 right-0 flex justify-between text-xs text-gray-600">
+          {days.map((day) => (
+            <span key={day}>{day}</span>
+          ))}
         </div>
       </div>
 
       {/* Legend */}
-      <div className="mt-4 flex items-center justify-center gap-6 text-xs">
+      <div className="flex items-center justify-center gap-8 mt-10">
         <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded-full bg-primary-800"></div>
-          <span className="text-grey-700">Online Sales</span>
+          <span className="w-3 h-3 rounded-full bg-chart-blue"></span>
+          <span className="text-sm text-gray-700">Online Sales</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded-full bg-support-green"></div>
-          <span className="text-grey-700">Offline Sales</span>
+          <span className="w-3 h-3 rounded-full bg-chart-teal"></span>
+          <span className="text-sm text-gray-700">Offline Sales</span>
         </div>
       </div>
     </div>
