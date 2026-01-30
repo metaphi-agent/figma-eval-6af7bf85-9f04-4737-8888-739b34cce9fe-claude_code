@@ -1,58 +1,56 @@
-export default function TopProducts() {
-  const products = [
-    { id: 1, name: 'Home Decor Range', popularity: 45, sales: '45%' },
-    { id: 2, name: 'Disney Princess Pink Bag 18', popularity: 29, sales: '29%' },
-    { id: 3, name: 'Bathroom Essentials', popularity: 18, sales: '18%' },
-    { id: 4, name: 'Apple Smartwatches', popularity: 25, sales: '25%' },
-  ];
+import clsx from 'clsx';
 
-  const colors = ['#4E65FF', '#2DCE89', '#8C52FF', '#FFC922'];
+interface Product {
+  rank: string;
+  name: string;
+  popularity: number;
+  sales: string;
+  color: string;
+}
 
+const products: Product[] = [
+  { rank: '01', name: 'Home Decor Range', popularity: 45, sales: '45%', color: 'bg-chart-blue' },
+  { rank: '02', name: "Disney Princess Pink Bag 18'", popularity: 29, sales: '29%', color: 'bg-chart-teal' },
+  { rank: '03', name: 'Bathroom Essentials', popularity: 18, sales: '18%', color: 'bg-violet' },
+  { rank: '04', name: 'Apple Smartwatches', popularity: 25, sales: '25%', color: 'bg-chart-blue' },
+];
+
+export function TopProducts() {
   return (
-    <div className="rounded-[20px] bg-white p-8 border border-grey-100" style={{ boxShadow: 'var(--shadow-card)' }}>
-      <h2 className="mb-6 text-xl font-semibold text-primary-dark">Top Products</h2>
+    <div className="bg-white rounded-[20px] p-6 shadow-card">
+      <h2 className="text-xl font-semibold text-primary-dark mb-6">Top Products</h2>
 
-      <div className="space-y-4">
-        {/* Header */}
-        <div className="flex items-center gap-4 pb-4 border-b border-grey-100">
-          <div className="w-12 text-center text-xs font-medium text-grey-700">#</div>
-          <div className="flex-1 text-xs font-medium text-grey-700">Name</div>
-          <div className="w-48 text-xs font-medium text-grey-700">Popularity</div>
-          <div className="w-24 text-right text-xs font-medium text-grey-700">Sales</div>
-        </div>
+      {/* Table Header */}
+      <div className="grid grid-cols-[40px_1fr_180px_80px] gap-4 text-sm text-gray-700 pb-4 border-b border-gray-100">
+        <span>#</span>
+        <span>Name</span>
+        <span>Popularity</span>
+        <span className="text-right">Sales</span>
+      </div>
 
-        {/* Products */}
-        {products.map((product, index) => (
-          <div key={product.id}>
-            <div className="flex items-center gap-4 py-4">
-              <div className="w-12 text-center text-base font-medium text-grey-900">
-                {String(product.id).padStart(2, '0')}
-              </div>
-              <div className="flex-1 text-base font-normal text-grey-900">{product.name}</div>
-              <div className="w-48">
-                <div className="h-2 w-full rounded-full bg-grey-300 overflow-hidden">
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${product.popularity}%`,
-                      backgroundColor: colors[index],
-                    }}
-                  ></div>
-                </div>
-              </div>
-              <div className="w-24 text-right">
-                <span
-                  className="inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-medium"
-                  style={{
-                    backgroundColor: `${colors[index]}20`,
-                    color: colors[index],
-                  }}
-                >
-                  {product.sales}
-                </span>
-              </div>
+      {/* Table Body */}
+      <div className="divide-y divide-gray-100">
+        {products.map((product) => (
+          <div
+            key={product.rank}
+            className="grid grid-cols-[40px_1fr_180px_80px] gap-4 items-center py-4"
+          >
+            <span className="text-sm text-gray-700">{product.rank}</span>
+            <span className="text-sm font-medium text-gray-900">{product.name}</span>
+            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className={clsx('h-full rounded-full', product.color)}
+                style={{ width: `${product.popularity}%` }}
+              ></div>
             </div>
-            {index < products.length - 1 && <div className="border-t border-grey-100"></div>}
+            <span className={clsx(
+              'text-xs font-medium px-3 py-1 rounded-full text-right',
+              product.color === 'bg-chart-blue' && 'bg-blue-100 text-chart-blue',
+              product.color === 'bg-chart-teal' && 'bg-green-light text-chart-teal',
+              product.color === 'bg-violet' && 'bg-violet-light text-violet'
+            )}>
+              {product.sales}
+            </span>
           </div>
         ))}
       </div>
