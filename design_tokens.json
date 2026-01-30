@@ -1,0 +1,100 @@
+{
+  "colors": {
+    "primary": {
+      "900": "#5D5FEF",
+      "800": "#4079ED",
+      "200": "#7B91B0",
+      "darkShade": "#05004E"
+    },
+    "greys": {
+      "blueGrey": {
+        "900": "#151D48",
+        "800": "#2C3E50",
+        "700": "#737791",
+        "300": "#F9FBFC",
+        "100": "#F5F6FA"
+      }
+    },
+    "neutral": {
+      "white": "#FFFFFF",
+      "black": "#000000",
+      "gray1": "#424966"
+    },
+    "supporting": {
+      "yellow": "#FFCF00",
+      "yellowShade": "#FFF4DE",
+      "green": "#00B69B",
+      "greenShade": "#DCFCE7",
+      "violet": "#9747FF",
+      "violetShade": "#F3E8FF"
+    },
+    "state": {
+      "error": "#F4574E",
+      "success": "#00B69B"
+    },
+    "cards": {
+      "pink": "#FFE2E5",
+      "yellow": "#FFF4DE",
+      "green": "#DCFCE7",
+      "purple": "#F3E8FF"
+    },
+    "charts": {
+      "line1": "#F4574E",
+      "line2": "#00B69B",
+      "line3": "#9747FF",
+      "barOnline": "#0095FF",
+      "barOffline": "#00E096"
+    },
+    "background": {
+      "main": "#FAFBFC",
+      "card": "#FFFFFF"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "Poppins, sans-serif",
+      "secondary": "Epilogue, sans-serif"
+    },
+    "fontSize": {
+      "4xl": "36px",
+      "3xl": "30px",
+      "2xl": "24px",
+      "xl": "20px",
+      "lg": "18px",
+      "base": "16px",
+      "sm": "14px",
+      "xs": "12px",
+      "xxs": "10px"
+    },
+    "fontWeight": {
+      "semibold": 600,
+      "medium": 500,
+      "regular": 400
+    },
+    "lineHeight": {
+      "tight": "133%",
+      "normal": "150%",
+      "relaxed": "160%"
+    }
+  },
+  "spacing": {
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "2xl": "40px",
+    "3xl": "48px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "2xl": "26px"
+  },
+  "shadows": {
+    "card": "0px 4px 20px rgba(238, 238, 238, 0.5)",
+    "button": "0px 20px 50px rgba(55, 69, 87, 0.1)"
+  }
+}

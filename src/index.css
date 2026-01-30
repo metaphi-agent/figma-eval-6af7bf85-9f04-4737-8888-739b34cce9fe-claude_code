@@ -1,85 +1,81 @@
 @import "tailwindcss";
 
 @theme {
+  /* Typography */
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Epilogue', sans-serif;
+
   /* Colors */
-  --color-primary-900: #151d48;
-  --color-primary-800: #4e65ff;
-  --color-primary-200: #7b91b2;
-  --color-primary-dark: #05004e;
+  --color-primary-900: #5D5FEF;
+  --color-primary-800: #4079ED;
+  --color-primary-200: #7B91B0;
+  --color-primary-dark: #05004E;
 
-  --color-support-green: #2dce89;
-  --color-support-green-shade: #d3ffe7;
-  --color-support-yellow: #ffc922;
-  --color-support-yellow-shade: #fff9e5;
-  --color-support-violet: #8c52ff;
-  --color-support-violet-shade: #ede8ff;
-  --color-support-red: #f64e60;
-  --color-support-red-shade: #fad6da;
+  --color-gray-900: #151D48;
+  --color-gray-800: #2C3E50;
+  --color-gray-700: #737791;
+  --color-gray-600: #424966;
+  --color-gray-300: #F9FBFC;
+  --color-gray-100: #F5F6FA;
 
-  --color-grey-100: #e7e9ed;
-  --color-grey-300: #f9fafb;
-  --color-grey-700: #7b91b2;
-  --color-grey-800: #464e5f;
-  --color-grey-900: #151d48;
+  --color-success: #00B69B;
+  --color-error: #F4574E;
 
-  --color-bg-main: #fafbfc;
+  --color-yellow: #FFCF00;
+  --color-yellow-light: #FFF4DE;
+  --color-green: #00B69B;
+  --color-green-light: #DCFCE7;
+  --color-violet: #9747FF;
+  --color-violet-light: #F3E8FF;
+  --color-pink-light: #FFE2E5;
 
-  /* Font families */
-  --font-family-sans: Poppins, system-ui, -apple-system, sans-serif;
-  --font-family-secondary: Epilogue, system-ui, -apple-system, sans-serif;
+  --color-chart-red: #F4574E;
+  --color-chart-green: #00B69B;
+  --color-chart-purple: #9747FF;
+  --color-chart-blue: #0095FF;
+  --color-chart-teal: #00E096;
 
-  /* Font sizes */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
+  --color-bg-main: #FAFBFC;
+  --color-bg-card: #FFFFFF;
 
   /* Shadows */
-  --shadow-card: 0px 4px 20px rgba(238, 238, 238, 0.502);
+  --shadow-card: 0px 4px 20px rgba(238, 238, 238, 0.5);
+  --shadow-button: 0px 20px 50px rgba(55, 69, 87, 0.1);
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 26px;
 }
 
-@layer base {
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2') format('woff2');
-  }
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrFJA.woff2') format('woff2');
+}
 
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2') format('woff2');
-  }
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9V1s.woff2') format('woff2');
+}
 
-  @font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2') format('woff2');
-  }
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLEj6V1s.woff2') format('woff2');
+}
 
-  @font-face {
-    font-family: 'Epilogue';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://fonts.gstatic.com/s/epilogue/v17/O4ZMFGj5hxF0EhjimngomvnCCtqb30OXMDLiDJXVigHPVA.woff2') format('woff2');
-  }
-
-  body {
-    margin: 0;
-    font-family: var(--font-family-sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: var(--color-bg-main);
-  }
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-bg-main);
 }
