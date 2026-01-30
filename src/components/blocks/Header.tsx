@@ -1,65 +1,68 @@
-export default function Header() {
+export function Header() {
   return (
-    <header className="fixed left-[345px] right-0 top-0 h-[120px] bg-white border-b border-grey-100 z-10">
-      <div className="flex h-full items-center justify-between px-8">
-        {/* Page Title */}
-        <h1 className="text-4xl font-semibold text-primary-900">Dashboard</h1>
+    <header className="h-[120px] bg-white flex items-center justify-between px-10 fixed top-0 left-[345px] right-0 z-10">
+      {/* Page Title */}
+      <h1 className="text-4xl font-semibold text-gray-900">Dashboard</h1>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-6">
-          {/* Search Bar */}
-          <div className="flex h-[60px] w-[513px] items-center gap-2 rounded-2xl bg-grey-300 px-6">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="flex-shrink-0">
-              <circle cx="14" cy="14" r="8" stroke="#7B91B2" strokeWidth="2"/>
-              <path d="M20 20l6 6" stroke="#7B91B2" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search here..."
-              className="flex-1 bg-transparent text-lg text-grey-900 placeholder-grey-700 outline-none"
+      {/* Search Bar */}
+      <div className="flex items-center gap-2 bg-gray-300 rounded-2xl px-6 py-4 w-[513px]">
+        <img
+          src="./assets/icons/search.svg"
+          alt="Search"
+          className="w-8 h-8"
+        />
+        <input
+          type="text"
+          placeholder="Search here..."
+          className="bg-transparent outline-none text-lg text-gray-700 placeholder:text-gray-700 flex-1"
+        />
+      </div>
+
+      {/* Right Section */}
+      <div className="flex items-center gap-4">
+        {/* Language Selector */}
+        <div className="flex items-center gap-4 px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-lg transition-colors">
+          <img
+            src="./assets/icons/language.svg"
+            alt="Language"
+            className="h-[60px]"
+          />
+        </div>
+
+        {/* Notifications */}
+        <div className="relative p-3 hover:bg-gray-100 rounded-full cursor-pointer transition-colors">
+          <img
+            src="./assets/icons/notification.svg"
+            alt="Notifications"
+            className="w-12 h-12"
+          />
+          <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-error rounded-full"></span>
+        </div>
+
+        {/* User Profile */}
+        <div className="flex items-center gap-3 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-lg transition-colors">
+          <img
+            src="./assets/images/user-avatar.png"
+            alt="User Avatar"
+            className="w-[60px] h-[60px] rounded-full object-cover"
+          />
+          <div className="flex flex-col">
+            <span className="font-semibold text-gray-900">Musfiq</span>
+            <span className="text-sm text-gray-700">Admin</span>
+          </div>
+          <svg
+            className="w-5 h-5 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
             />
-          </div>
-
-          {/* Language Selector */}
-          <div className="flex h-[60px] items-center gap-4 px-4">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full overflow-hidden bg-grey-300">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <circle cx="16" cy="16" r="14" fill="#F64E60"/>
-                  <circle cx="16" cy="16" r="10" fill="white"/>
-                </svg>
-              </div>
-              <span className="text-lg text-grey-900">Eng (US)</span>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 9l6 6 6-6" stroke="#7B91B2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-
-          {/* Notification */}
-          <button className="relative h-12 w-12 flex items-center justify-center">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 28c1.657 0 3-1.343 3-3h-6c0 1.657 1.343 3 3 3z" fill="#7B91B2"/>
-              <path d="M26 20v-8a10 10 0 10-20 0v8l-2 2v2h24v-2l-2-2z" stroke="#7B91B2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-support-red"></span>
-          </button>
-
-          {/* User Profile */}
-          <div className="flex items-center gap-4 pl-4">
-            <img
-              src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
-              alt="User profile"
-              className="h-12 w-12 rounded-full"
-            />
-            <div className="flex flex-col">
-              <span className="text-base font-medium text-primary-900">Muxfit</span>
-              <span className="text-sm text-grey-700">Admin</span>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 9l6 6 6-6" stroke="#7B91B2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
+          </svg>
         </div>
       </div>
     </header>

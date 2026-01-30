@@ -1,142 +1,86 @@
-export default function Sidebar() {
-  const menuItems = [
-    { icon: 'dashboard', label: 'Dashboard', active: true },
-    { icon: 'leaderboard', label: 'Leaderboard', active: false },
-    { icon: 'cart', label: 'order', active: false },
-    { icon: 'products', label: 'Products', active: false },
-    { icon: 'chart', label: 'Sales Report', active: false },
-    { icon: 'message', label: 'Messages', active: false },
-    { icon: 'settings', label: 'Settings', active: false },
-    { icon: 'signout', label: 'Sign Out', active: false },
-  ];
+import { useState } from 'react';
+import clsx from 'clsx';
 
-  const renderIcon = (iconName: string, isActive: boolean) => {
-    const colorClass = isActive ? 'stroke-white' : 'stroke-grey-700';
+interface NavItem {
+  name: string;
+  icon: string;
+  active?: boolean;
+}
 
-    switch (iconName) {
-      case 'dashboard':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect x="4" y="4" width="11" height="11" rx="2" className={colorClass} strokeWidth="2"/>
-            <rect x="4" y="17" width="11" height="11" rx="2" className={colorClass} strokeWidth="2"/>
-            <rect x="17" y="4" width="11" height="11" rx="2" className={colorClass} strokeWidth="2"/>
-            <rect x="17" y="17" width="11" height="11" rx="2" className={colorClass} strokeWidth="2"/>
-          </svg>
-        );
-      case 'leaderboard':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M10 20h4v8h-4v-8zM14 12h4v16h-4V12zM18 16h4v12h-4V16z" className={colorClass} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
-      case 'cart':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M2 2h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L26 6H8" className={colorClass} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="12" cy="26" r="2" className={colorClass} strokeWidth="2"/>
-            <circle cx="22" cy="26" r="2" className={colorClass} strokeWidth="2"/>
-          </svg>
-        );
-      case 'products':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M6 8h20M6 16h20M6 24h20" className={colorClass} strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        );
-      case 'chart':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M4 28L10 16L16 22L28 4" className={colorClass} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="10" cy="16" r="2" fill={isActive ? 'white' : '#7b91b2'}/>
-            <circle cx="16" cy="22" r="2" fill={isActive ? 'white' : '#7b91b2'}/>
-            <circle cx="28" cy="4" r="2" fill={isActive ? 'white' : '#7b91b2'}/>
-          </svg>
-        );
-      case 'message':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M28 16a12 12 0 01-12 12H4V16a12 12 0 0124 0z" className={colorClass} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="10" cy="16" r="1.5" fill={isActive ? 'white' : '#7b91b2'}/>
-            <circle cx="16" cy="16" r="1.5" fill={isActive ? 'white' : '#7b91b2'}/>
-            <circle cx="22" cy="16" r="1.5" fill={isActive ? 'white' : '#7b91b2'}/>
-          </svg>
-        );
-      case 'settings':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="4" className={colorClass} strokeWidth="2"/>
-            <path d="M16 2v4m0 20v4M28 16h-4M8 16H4m20.485-9.485l-2.828 2.828M10.343 21.657l-2.828 2.828M28.485 25.485l-2.828-2.828M10.343 10.343L7.515 7.515" className={colorClass} strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        );
-      case 'signout':
-        return (
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M12 28H6a2 2 0 01-2-2V6a2 2 0 012-2h6M22 22l6-6-6-6M28 16H12" className={colorClass} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
-      default:
-        return null;
-    }
-  };
+const navItems: NavItem[] = [
+  { name: 'Dashboard', icon: './assets/icons/dashboard.svg', active: true },
+  { name: 'Leaderboard', icon: './assets/icons/leaderboard.svg' },
+  { name: 'order', icon: './assets/icons/cart.svg' },
+  { name: 'Products', icon: './assets/icons/products.svg' },
+  { name: 'Sales Report', icon: './assets/icons/chart.svg' },
+  { name: 'Messages', icon: './assets/icons/messages.svg' },
+  { name: 'Settings', icon: './assets/icons/settings.svg' },
+  { name: 'Sign Out', icon: './assets/icons/signout.svg' },
+];
+
+export function Sidebar() {
+  const [activeItem, setActiveItem] = useState('Dashboard');
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[345px] bg-white">
+    <aside className="w-[345px] h-screen bg-white flex flex-col py-8 px-6 fixed left-0 top-0">
       {/* Logo */}
-      <div className="flex items-center gap-4 px-12 py-14">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-800">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="12" r="8" stroke="white" strokeWidth="2"/>
-            <path d="M8 28c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <span className="text-3xl font-semibold text-primary-900">Dabang</span>
+      <div className="flex items-center gap-4 px-4 mb-12">
+        <img
+          src="./assets/icons/logo.svg"
+          alt="Dabang Logo"
+          className="w-14 h-14"
+        />
+        <span className="text-[30px] font-semibold text-gray-900">Dabang</span>
       </div>
 
       {/* Navigation */}
-      <nav className="px-8 space-y-2">
-        {menuItems.slice(0, 7).map((item) => (
+      <nav className="flex flex-col gap-4 flex-1">
+        {navItems.map((item) => (
           <button
-            key={item.label}
-            className={`w-full flex items-center gap-6 px-6 py-4 rounded-2xl transition-colors ${
-              item.active
-                ? 'bg-primary-800 text-white shadow-[0_20px_50px_rgba(55,70,163,0.1)]'
-                : 'text-grey-700 hover:bg-grey-300'
-            }`}
+            key={item.name}
+            onClick={() => setActiveItem(item.name)}
+            className={clsx(
+              'flex items-center gap-6 px-6 py-4 rounded-2xl transition-all duration-200',
+              activeItem === item.name
+                ? 'bg-primary-900 text-white shadow-[0px_20px_50px_rgba(55,69,87,0.1)]'
+                : 'text-gray-700 hover:bg-gray-100'
+            )}
           >
-            {renderIcon(item.icon, item.active)}
-            <span className="text-lg font-normal">{item.label}</span>
+            <img
+              src={item.icon}
+              alt={item.name}
+              className={clsx(
+                'w-8 h-8',
+                activeItem === item.name ? 'brightness-0 invert' : ''
+              )}
+            />
+            <span className={clsx(
+              'text-lg',
+              activeItem === item.name ? 'font-semibold' : 'font-normal'
+            )}>
+              {item.name}
+            </span>
           </button>
         ))}
       </nav>
 
-      {/* Sign Out - at bottom */}
-      <div className="absolute bottom-8 left-8 right-8">
-        <button className="w-full flex items-center gap-6 px-6 py-4 rounded-2xl text-grey-700 hover:bg-grey-300 transition-colors">
-          {renderIcon('signout', false)}
-          <span className="text-lg font-normal">Sign Out</span>
-        </button>
-      </div>
-
-      {/* Upgrade Card */}
-      <div className="absolute bottom-24 left-8 right-8 mb-4">
-        <div className="relative overflow-hidden rounded-[26px] bg-gradient-to-br from-primary-800 to-primary-900 p-6 text-center">
-          <div className="relative z-10">
-            <div className="mb-6 flex justify-center">
-              <div className="h-16 w-16 rounded-full bg-white/20 flex items-center justify-center">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 4l-4 8h8l-4 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="16" cy="24" r="2" fill="white"/>
-                </svg>
-              </div>
-            </div>
-            <h3 className="mb-2 text-xl font-semibold text-white">Dabang Pro</h3>
-            <p className="mb-6 text-sm text-white/80">
-              Get access to all features on tetumbas
-            </p>
-            <button className="w-full rounded-lg bg-white py-3 text-sm font-medium text-primary-800 hover:bg-white/90 transition-colors">
-              Get Pro
-            </button>
+      {/* Get Pro Card */}
+      <div className="mt-auto">
+        <div className="bg-gradient-to-br from-primary-900 to-[#8B5CF6] rounded-[20px] p-6 text-center">
+          <div className="w-14 h-14 mx-auto mb-4 bg-white/20 rounded-xl flex items-center justify-center">
+            <img
+              src="./assets/icons/logo-icon.svg"
+              alt="Pro"
+              className="w-6 h-6 brightness-0 invert"
+            />
           </div>
+          <h3 className="text-white font-semibold text-lg mb-1">Dabang Pro</h3>
+          <p className="text-white/80 text-sm mb-4">
+            Get access to all<br />features on tetumbas
+          </p>
+          <button className="bg-white text-primary-900 font-semibold px-8 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+            Get Pro
+          </button>
         </div>
       </div>
     </aside>
